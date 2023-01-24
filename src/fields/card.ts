@@ -14,6 +14,35 @@ export const card: Field = {
       }
     },
     {
+      name: 'color',
+      type: 'select',
+      options: [
+        {
+          label: 'Blue',
+          value: 'blue'
+        },
+        {
+          label: 'Teal',
+          value: 'teal'
+        },
+        {
+          label: 'Tomato',
+          value: 'tomato'
+        },
+        {
+          label: 'Plum',
+          value: 'plum'
+        },
+        {
+          label: 'Violet',
+          value: 'violet'
+        }
+      ],
+      admin: {
+        width: '100%'
+      }
+    },
+    {
       name: 'links',
       type: 'array',
       required: true,
