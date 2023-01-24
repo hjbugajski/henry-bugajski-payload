@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.0](https://github.com/hjbugajski/henry-bugajski-payload-cms/compare/v1.0.0...v1.1.0) (2023-01-24)
+
+### Features
+
+- add color select to card field ([0e619b7](https://github.com/hjbugajski/henry-bugajski-payload-cms/commit/0e619b7f6b62c56cb8f4df26c27146a6d1abc159))
+
 ## 1.0.0 (2023-01-24)
 
 ### Features
