@@ -51,6 +51,7 @@ export interface Page {
           title: string;
           cards: {
             title: string;
+            color?: 'blue' | 'teal' | 'tomato' | 'plum' | 'violet';
             links: {
               type: 'internal' | 'file' | 'external';
               newTab?: boolean;
