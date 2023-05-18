@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 
-import { isAdminFieldLevel, isAdminOrSelf, isAdminOrSelfFieldLevel } from '../access';
+import { isAdmin, isAdminFieldLevel, isAdminOrSelf, isAdminOrSelfFieldLevel } from '../access';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -10,10 +10,10 @@ const Users: CollectionConfig = {
     group: 'Admin'
   },
   access: {
-    create: () => true,
+    create: isAdmin,
     read: isAdminOrSelf,
     update: isAdminOrSelf,
-    delete: isAdminOrSelf
+    delete: isAdmin
   },
   fields: [
     {
