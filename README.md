@@ -1,4 +1,4 @@
-# henry-bugajski-payload-cms
+# henry-bugajski-payload
 
 This project was created using create-payload-app using the ts-blank template.
 

@@ -8,7 +8,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: henry-bugajski-payload-cms
+  IMAGE_NAME: henry-bugajski-payload
 
 jobs:
   push:

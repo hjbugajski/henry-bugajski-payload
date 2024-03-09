@@ -1,5 +1,5 @@
 {
-  "name": "henry-bugajski-payload-cms",
+  "name": "henry-bugajski-payload",
   "description": "Payload CMS for Henry Bugajski's portfolio.",
   "version": "1.1.4",
   "main": "dist/server.js",
