@@ -1,50 +1,35 @@
 import { CollectionConfig } from 'payload/types';
 
-import { isAdmin, isAdminFieldLevel, isAdminOrSelf, isAdminOrSelfFieldLevel } from '../access';
+import { hasRole, hasRoleField, hasRoleOrSelf, hasRoleOrSelfField, Role } from '../access';
 
 const Users: CollectionConfig = {
   slug: 'users',
   auth: true,
   admin: {
     useAsTitle: 'email',
-    group: 'Admin'
+    group: 'Admin',
+    defaultColumns: ['email', 'roles', 'id'],
   },
   access: {
-    create: isAdmin,
-    read: isAdminOrSelf,
-    update: isAdminOrSelf,
-    delete: isAdmin
+    create: hasRole(Role.Admin),
+    read: hasRoleOrSelf(Role.Admin),
+    update: hasRoleOrSelf(Role.Admin),
+    delete: hasRole(Role.Admin),
   },
   fields: [
-    {
-      type: 'row',
-      fields: [
-        {
-          name: 'firstName',
-          type: 'text',
-          required: false
-        },
-        {
-          name: 'lastName',
-          type: 'text',
-          required: false
-        }
-      ]
-    },
     {
       name: 'roles',
       type: 'select',
       hasMany: true,
-      defaultValue: ['public'],
+      defaultValue: [Role.Editor],
       required: true,
       access: {
-        read: isAdminOrSelfFieldLevel,
-        create: isAdminFieldLevel,
-        update: isAdminFieldLevel
+        read: hasRoleOrSelfField(Role.Admin),
+        update: hasRoleField(Role.Admin),
       },
-      options: ['admin', 'editor', 'public']
-    }
-  ]
+      options: Object.keys(Role).map((key) => Role[key]),
+    },
+  ],
 };
 
 export default Users;

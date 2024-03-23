@@ -1,19 +1,8 @@
-/**
- * Simple object check.
- * @param item
- * @returns {boolean}
- */
 export function isObject(item: unknown): boolean {
   return item && typeof item === 'object' && !Array.isArray(item);
 }
 
-/**
- * Deep merge two objects.
- * @param target
- * @param ...sources
- */
-// eslint-disable-next-line @typescript-eslint/ban-types
-export default function deepMerge<T extends Object, R>(target: T, source: R): T {
+export function deepMerge<T = any>(target: Partial<T>, source: Partial<T>): T {
   const output = { ...target };
 
   if (isObject(target) && isObject(source)) {
@@ -24,11 +13,17 @@ export default function deepMerge<T extends Object, R>(target: T, source: R): T 
         } else {
           output[key] = deepMerge(target[key], source[key]);
         }
+      } else if (Array.isArray(source[key])) {
+        if (!(key in target)) {
+          Object.assign(output, { [key]: source[key] });
+        } else {
+          output[key] = [...target[key], ...source[key]];
+        }
       } else {
         Object.assign(output, { [key]: source[key] });
       }
     });
   }
 
-  return output;
+  return output as T;
 }

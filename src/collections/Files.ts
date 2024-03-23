@@ -2,25 +2,28 @@ import path from 'path';
 
 import { CollectionConfig } from 'payload/types';
 
-import { isAdminOrEditor } from '../access';
+import { hasRole, hasRoleOrPublished, Role } from '../access';
 
 const Files: CollectionConfig = {
   slug: 'files',
+  versions: {
+    drafts: true,
+  },
   access: {
-    read: () => true,
-    create: isAdminOrEditor,
-    update: isAdminOrEditor,
-    delete: isAdminOrEditor
+    read: hasRoleOrPublished(Role.Admin, Role.Editor),
+    create: hasRole(Role.Admin, Role.Editor),
+    update: hasRole(Role.Admin, Role.Editor),
+    delete: hasRole(Role.Admin),
   },
   admin: {
     useAsTitle: 'filename',
-    group: 'Content'
+    group: 'Content',
   },
   upload: {
     staticDir: path.resolve(__dirname, '../../files'),
-    mimeTypes: ['application/pdf']
+    mimeTypes: ['application/pdf'],
   },
-  fields: []
+  fields: [],
 };
 
 export default Files;
